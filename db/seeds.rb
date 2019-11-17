@@ -15,12 +15,13 @@ require 'faker'
   group.save!
 end
 
-100.times do
-  participant = Participant.new(
+50.times do
+  user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.free_email,
+    encrypted_password: Faker::Internet.password,
     group_id: Group.all.ids.sample
   )
-  participant.save!
+  user.save!
 end

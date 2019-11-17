@@ -3,3 +3,6 @@
 
 <%= link_to 'Add a new group', new_group_path, class: 'btn btn-outline-secondary btn-sm' %>
 
+<% if user_signed_in? %>
+<%= link_to 'logout', destroy_user_session_path, :method => :delete, class: 'btn btn-outline-secondary btn-sm' %>
+<% end %>

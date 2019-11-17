@@ -1,6 +1,15 @@
-<h1>Here you can add a new group</h1>
+<h1>Hi, <%= current_user.first_name %></h1>
 
-<%= simple_form_for @group do |f| %>
-  <%= f.input :name %>
-  <%= f.submit class: 'btn btn-primary mb-2' %>
+<%= current_user.email %>
+
+<% if @user.group_id == nil %>
+  <%= simple_form_for @group do |f| %>
+    <%= f.input :name %>
+    <%= f.submit class: 'btn btn-primary mb-2' %>
+  <% end %>
+
+<% else %>
+<p>You are already in a group mister.</p>
+<%= link_to 'Back to home', root_path, class: 'btn btn-outline-secondary btn-sm' %>
+<%= link_to 'Go to my group', group_path(@user.group_id), class: 'btn btn-outline-secondary btn-sm' %>
 <% end %>

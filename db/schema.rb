@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_16_154252) do
+ActiveRecord::Schema.define(version: 2019_11_17_172038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,19 +21,25 @@ ActiveRecord::Schema.define(version: 2019_11_16_154252) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "participants", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
-    t.string "email"
     t.boolean "admin"
     t.bigint "group_id"
     t.bigint "receiver_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_participants_on_group_id"
-    t.index ["receiver_id"], name: "index_participants_on_receiver_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["group_id"], name: "index_users_on_group_id"
+    t.index ["receiver_id"], name: "index_users_on_receiver_id"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "participants", "groups"
-  add_foreign_key "participants", "participants", column: "receiver_id"
+  add_foreign_key "users", "groups"
+  add_foreign_key "users", "users", column: "receiver_id"
 end

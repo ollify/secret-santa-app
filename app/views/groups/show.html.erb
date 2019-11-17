@@ -1,2 +1,14 @@
-<h1><%= @group.name %></h1>
-<%= link_to 'Add group member', new_group_participant_path(@group), class: 'btn btn-outline-secondary btn-sm' %>
+<h1>Group: <%= @group.name %></h1>
+<h2>Hi, <%= current_user.first_name %></h2>
+<p>Share this URL</p>
+<p><%= request.original_url %></p>
+
+<h2>Group members in this group</h2>
+<ul>
+<% @group.users.each do |user| %>
+  <li><%= user.first_name %></li>
+<% end %>
+</ul>
+
+
+<%= link_to 'Back to home', root_path, class: 'btn btn-outline-secondary btn-sm' %>
