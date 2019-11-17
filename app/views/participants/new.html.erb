@@ -1,0 +1,10 @@
+<h1>Add a new member to your group <strong><%= @group.name %></strong>here</h1>
+
+<%= simple_form_for [@group, @participant] do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.submit class: 'btn btn-primary mb-2' %>
+<% end %>
+
+
