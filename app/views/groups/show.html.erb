@@ -4,11 +4,21 @@
 <p><%= request.original_url %></p>
 
 <h2>Group members in this group</h2>
-<ul>
+<table>
 <% @group.users.each do |user| %>
-  <li><%= user.first_name %></li>
+  <tr>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= User.find(user.receiver_id).first_name %></td>
+    <td><%= User.find(user.receiver_id).last_name %></td>
+  </tr>
 <% end %>
-</ul>
+</table>
+
+<btn>
+
+<%= link_to 'Join group', group_join_group_path(@group), method: :post %>
+<%= link_to 'Draw now', group_draw_path(@group), method: :post %>
 
 
 <%= link_to 'Back to home', root_path, class: 'btn btn-outline-secondary btn-sm' %>

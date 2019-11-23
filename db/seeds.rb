@@ -8,6 +8,8 @@
 
 require 'faker'
 
+puts 'creating groups'
+
 5.times do
   group = Group.new(
     name: Faker::Team.unique.name
@@ -15,13 +17,35 @@ require 'faker'
   group.save!
 end
 
+puts 'creating users'
+
+
+# 50.times do
+#   user = User.new(
+#     first_name: Faker::Name.first_name,
+#     last_name: Faker::Name.last_name,
+#     email: Faker::Internet.free_email,
+#     encrypted_password: Faker::Internet.password,
+#     group_id: Group.all.ids.sample,
+#     password: "$2a$10$5eoHh6M2q4GjGkHClO.NqebWWhS94D8rNj5Ot6CB2qrbn7IrTfkSa",
+#     reset_password_token: nil,
+#     reset_password_sent_at: nil,
+#     remember_created_at: nil,
+#   )
+#   user.save!
+# end
+
+puts 'adding users to group with id 1'
 50.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     email: Faker::Internet.free_email,
-    encrypted_password: Faker::Internet.password,
-    group_id: Group.all.ids.sample
+    password: "$2a$10$5eoHh6M2q4GjGkHClO.NqebWWhS94D8rNj5Ot6CB2qrbn7IrTfkSa",
+    reset_password_token: nil,
+    reset_password_sent_at: nil,
+    remember_created_at: nil,
+    group_id: 1
   )
   user.save!
 end
