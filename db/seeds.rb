@@ -34,8 +34,8 @@ require 'faker'
 #   user.save!
 # end
 
-puts 'adding users to group with id 1'
-50.times do
+puts 'adding users to group'
+10.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -44,7 +44,8 @@ puts 'adding users to group with id 1'
     reset_password_token: nil,
     reset_password_sent_at: nil,
     remember_created_at: nil,
-    group_id: 37
+    group_id: 44,
+    user_status: ["pending", "approved"].sample
   )
   user.save!
 end
