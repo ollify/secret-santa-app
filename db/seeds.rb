@@ -44,7 +44,7 @@ puts 'adding users to group'
     reset_password_token: nil,
     reset_password_sent_at: nil,
     remember_created_at: nil,
-    group_id: 44,
+    group_id: 49,
     user_status: ["pending", "approved"].sample
   )
   user.save!

@@ -12,6 +12,9 @@ gem 'faker'
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 
+# fake mailer
+gem 'letter_opener', group: :development
+
 # security tool for API keys
 gem 'dotenv-rails', groups: [:development, :test]
 

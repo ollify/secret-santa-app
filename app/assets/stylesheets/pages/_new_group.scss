@@ -1,29 +1,40 @@
-.add-group-container {
-  display: flex;
-  background-image: url(asset_path("lama-bg.jpg"));
+.group-container {
+  background-image: url(asset_path("bg-snow.jpg"));
   background-size: cover;
-  background-position: bottom;
+  min-height: 100vh;
 }
 
 .show-group-container {
-  display: flex;
   background-color: #FAFAFA;
 }
 
 .add-group-info {
-  position: sticky;
-  top: 0;
-  background-image: url(asset_path("bg-snow.jpg"));
-  background-size: cover;
-  width: 400px;
-  height: 100vh;
-  padding: 40px;
-  background-color: white;
+  background-color: #FAFAFA;
+  padding: 50px;
   img {
     width: 200px;
     margin-bottom: 50px;
   }
 }
+
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.info-left {
+  background-image: url(asset_path("bg-snow.jpg"));
+  background-size: cover;
+  padding: 40px;
+  height: 100vh;
+  img {
+    width: 200px;
+    margin-bottom: 50px;
+  }
+}
+
 
 .add-group-right {
   margin: 100px auto;
@@ -49,4 +60,20 @@
 .group-info-box {
   margin: 0px auto;
   padding: 100px;
+}
+
+
+#url-input {
+  margin-bottom: 20px;
+}
+
+#copy-button {
+  margin-bottom: 20px;
+}
+
+.description {
+  width: 300 px;
+  background-color: white;
+  padding: 50px;
+  margin-bottom: 30px;
 }
