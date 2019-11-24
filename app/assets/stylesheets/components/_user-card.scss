@@ -5,7 +5,9 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
-  align-items: center;
+  align-items: space;
+  justify-items: space-between;
+  position: relative;
 }
 
 .card-user img {
@@ -31,3 +33,10 @@
 .card-user .card-user-infos {
   padding: 16px;
 }
+
+.card-user-action {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+}
+

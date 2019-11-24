@@ -5,6 +5,11 @@
   background-position: bottom;
 }
 
+.show-group-container {
+  display: flex;
+  background-color: #FAFAFA;
+}
+
 .add-group-info {
   position: sticky;
   top: 0;
@@ -20,6 +25,29 @@
   }
 }
 
-.add-group-right{
+.add-group-right {
   margin: 100px auto;
+}
+
+.group-detail{
+  width: 100%;
+}
+
+.group-bg {
+  background-image: url(asset_path("group-bg.jpg"));
+  background-size: cover;
+  background-repeat: none;
+  background-position: center;
+  height: 400px;
+  width: 100%;
+}
+
+.group-members {
+  margin: 0px auto;
+  padding: 0px 100px;
+}
+
+.group-info-box {
+  margin: 0px auto;
+  padding: 100px;
 }

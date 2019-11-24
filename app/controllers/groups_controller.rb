@@ -6,7 +6,19 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:group_id])
     @group.save
     @user.group_id = @group.id
+    @user.user_status = 'pending'
     if @user.save
+      redirect_to group_path(@group)
+    else
+      render 'new'
+    end
+  end
+
+  def approve_request
+    @group = Group.find(params[:group_id])
+    requesting_user = User.find(params[:user_id])
+    requesting_user.user_status = 'approved'
+    if requesting_user.save
       redirect_to group_path(@group)
     else
       render 'new'
@@ -50,6 +62,7 @@ class GroupsController < ApplicationController
     if @group.save
       @user.group_id = @group.id
       @user.admin = true
+      @user.user_status = 'approved'
       @user.save
       redirect_to group_path(@group)
     else

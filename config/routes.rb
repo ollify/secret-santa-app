@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     post 'join_group', to: 'groups#join_group'
     post 'draw', to: 'groups#draw'
   end
+  post 'approve_request', to: 'groups#approve_request'
   devise_for :users
 end

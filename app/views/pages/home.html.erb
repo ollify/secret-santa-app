@@ -13,9 +13,14 @@
     <p class="text-link">Or join an existing group.</p>
     </div>
 
-    <% if user_signed_in? %>
-    <%= link_to 'Go to my group', group_path(current_user.group_id), class: 'btn btn-outline-secondary btn-sm' %>
-    <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: 'btn btn-outline-secondary btn-sm' %>
+    <% if user_signed_in? && current_user.group_id != nil %>
+      <%= link_to 'Go to my group', group_path(current_user.group_id), class: 'btn btn-outline-secondary btn-sm' %>
     <% end %>
+
+    <% if user_signed_in? %>
+      <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: 'btn btn-outline-secondary btn-sm' %>
+    <% end %>
+
+
   </div>
 </div>
