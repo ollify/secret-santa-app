@@ -1,24 +1,57 @@
-<h1>Group: <%= @group.name %></h1>
-<h2>Hi, <%= current_user.first_name %></h2>
-<p>Share this URL</p>
-<p><%= request.original_url %></p>
+<div class="add-group-container">
 
-<h2>Group members in this group</h2>
-<table>
-<% @group.users.each do |user| %>
-  <tr>
-    <td><%= user.first_name %></td>
-    <td><%= user.last_name %></td>
-    <td><%= User.find(user.receiver_id).first_name %></td>
-    <td><%= User.find(user.receiver_id).last_name %></td>
-  </tr>
-<% end %>
-</table>
+  <div class="add-group-info">
+    <%= link_to 'Back to home', root_path, class: 'btn btn-outline-secondary btn-sm', style:"margin-bottom: 30px" %>
+    <h1><%= @group.name %></h1>
+    <h2>Hi, <%= current_user.first_name %></h2>
+    <p>Share this URL</p>
+    <p><%= request.original_url %></p>
+    <p>Group status: <%= @group.status %></p>
+    <% if current_user.group_id.nil? && @group.status == "created" %>
+    <%= link_to 'Join group', group_join_group_path(@group), method: :post, class: 'btn btn-secondary mb-2' %>
+    <% end %>
 
-<btn>
+    <div class="group-admin-box">
+      <% if current_user.admin? && @group.status == "created"%>
+      <%= link_to 'Draw now', group_draw_path(@group), method: :post, class: 'btn btn-secondary mb-2' %>
+      <% elsif current_user.admin? && @group.status == "drawn" %>
+      <p>You have already conducted a drawing. You shouldn't draw again.</p>
+      <%= link_to 'Draw again (NOT RECOMMENDED!)', group_draw_path(@group), method: :post, class: 'btn btn-secondary btn-sm' %>
+      <% end %>
+    </div>
 
-<%= link_to 'Join group', group_join_group_path(@group), method: :post %>
-<%= link_to 'Draw now', group_draw_path(@group), method: :post %>
+  </div>
 
 
-<%= link_to 'Back to home', root_path, class: 'btn btn-outline-secondary btn-sm' %>
+
+  <div class="add-group-right">
+    <% unless current_user.receiver_id.nil? %>
+    <h2>You have to give a gift to <%= User.find(current_user.receiver_id).first_name %> <%= User.find(current_user.receiver_id).last_name %></h2>
+    <div class="card-user">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+      <div class="card-user-infos">
+        <h2><%= User.find(current_user.receiver_id).first_name %> <%= User.find(current_user.receiver_id).last_name %></h2>
+        <% if User.find(current_user.receiver_id).admin == true %>
+          <p>ADMIN</p>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+
+    <h2>Group members in this group</h2>
+    <% @group.users.each do |user| %>
+      <div class="card-user">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+        <div class="card-user-infos">
+          <h2><%= user.first_name %> <%= user.last_name %></h2>
+          <% unless user.receiver_id.nil? || @group.status == "created" %>
+          <p>beschenkt <%= User.find(user.receiver_id).first_name %> <%= User.find(user.receiver_id).last_name %></p>
+          <% end %>
+          <% if user.admin == true %>
+            <p>ADMIN</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

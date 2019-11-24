@@ -1,0 +1,42 @@
+// Specific CSS for your home-page
+.home-container {
+  background-image: url(asset_path("bg-snow.jpg.jpg"));
+  background-size: cover;
+  background-position: bottom;
+  height: 100vh;
+  width: 100%;
+}
+
+.notice, .alert {
+  margin: 0px
+}
+
+#myVideo {
+  position: fixed;
+  z-index: -2;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.CTA-box {
+  background-image: url(asset_path("bg-snow.jpg"));
+  background-size: cover;
+  width: 400px;
+  height: 100vh;
+  padding: 40px;
+  img {
+    width: 150px;
+  }
+  .heading {
+    margin-top: 50px;
+  }
+  .CTA {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .text-link {
+    margin-top: 25px;
+  }
+}

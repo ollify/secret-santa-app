@@ -8,17 +8,16 @@
 
 require 'faker'
 
-puts 'creating groups'
+# puts 'creating groups'
 
-5.times do
-  group = Group.new(
-    name: Faker::Team.unique.name
-  )
-  group.save!
-end
+# 5.times do
+#   group = Group.new(
+#     name: Faker::Team.unique.name
+#   )
+#   group.save!
+# end
 
-puts 'creating users'
-
+# puts 'creating users'
 
 # 50.times do
 #   user = User.new(
@@ -45,7 +44,7 @@ puts 'adding users to group with id 1'
     reset_password_token: nil,
     reset_password_sent_at: nil,
     remember_created_at: nil,
-    group_id: 1
+    group_id: 37
   )
   user.save!
 end

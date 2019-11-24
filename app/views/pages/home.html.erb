@@ -1,8 +1,21 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<video autoplay muted loop id="myVideo">
+<source src=<%= asset_path('bg.mp4') %> type=video/mp4>
+</video>
 
-<%= link_to 'Add a new group', new_group_path, class: 'btn btn-outline-secondary btn-sm' %>
+<div class="column">
+  <div class="CTA-box">
+    <img src=<%= asset_path('lama.png') %>>
+    <div class="heading">
+      <h1>The only secret santa tool you'll ever need.</h1>
+    </div>
+    <div class="CTA">
+    <%= link_to 'Add a new group', new_group_path, class: 'btn btn-secondary btn-l' %>
+    <p class="text-link">Or join an existing group.</p>
+    </div>
 
-<% if user_signed_in? %>
-<%= link_to 'logout', destroy_user_session_path, :method => :delete, class: 'btn btn-outline-secondary btn-sm' %>
-<% end %>
+    <% if user_signed_in? %>
+    <%= link_to 'Go to my group', group_path(current_user.group_id), class: 'btn btn-outline-secondary btn-sm' %>
+    <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: 'btn btn-outline-secondary btn-sm' %>
+    <% end %>
+  </div>
+</div>

@@ -25,6 +25,8 @@ class GroupsController < ApplicationController
       person.receiver_id = @group_arr[index - 1].id
       person.save
     end
+    @group.status = "drawn"
+    @group.save
     redirect_to group_path(@group)
   end
 
@@ -44,6 +46,7 @@ class GroupsController < ApplicationController
   def create
     @user = current_user
     @group = Group.new(group_params)
+    @group.status = 'created'
     if @group.save
       @user.group_id = @group.id
       @user.admin = true

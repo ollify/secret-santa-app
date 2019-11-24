@@ -1,0 +1,25 @@
+.add-group-container {
+  display: flex;
+  background-image: url(asset_path("lama-bg.jpg"));
+  background-size: cover;
+  background-position: bottom;
+}
+
+.add-group-info {
+  position: sticky;
+  top: 0;
+  background-image: url(asset_path("bg-snow.jpg"));
+  background-size: cover;
+  width: 400px;
+  height: 100vh;
+  padding: 40px;
+  background-color: white;
+  img {
+    width: 200px;
+    margin-bottom: 50px;
+  }
+}
+
+.add-group-right{
+  margin: 100px auto;
+}

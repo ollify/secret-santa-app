@@ -1,15 +1,23 @@
-<h1>Hi, <%= current_user.first_name %></h1>
+<div class="add-group-container">
 
-<%= current_user.email %>
+  <div class="add-group-info">
+    <img src=<%= asset_path('lama2.png') %>>
+    <h1>Hi, <%= current_user.first_name %></h1>
+  </div>
 
-<% if @user.group_id == nil %>
-  <%= simple_form_for @group do |f| %>
-    <%= f.input :name %>
-    <%= f.submit class: 'btn btn-primary mb-2' %>
-  <% end %>
+  <div class="add-group-right">
+    <div class="form-box">
+      <% if @user.group_id == nil %>
+        <%= simple_form_for @group do |f| %>
+          <%= f.input :name %>
+          <%= f.submit class: 'btn btn-secondary mb-2' %>
+        <% end %>
+      <% else %>
+      <p>You are already in a group mister.</p>
+      <%= link_to 'Back to home', root_path, class: 'btn btn-outline-secondary btn-sm' %>
+      <%= link_to 'Go to my group', group_path(@user.group_id), class: 'btn btn-outline-secondary btn-sm' %>
+      <% end %>
+    </div>
+  </div>
 
-<% else %>
-<p>You are already in a group mister.</p>
-<%= link_to 'Back to home', root_path, class: 'btn btn-outline-secondary btn-sm' %>
-<%= link_to 'Go to my group', group_path(@user.group_id), class: 'btn btn-outline-secondary btn-sm' %>
-<% end %>
+</div>

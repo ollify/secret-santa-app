@@ -1,0 +1,11 @@
+.signup-container {
+  background-image: url(asset_path("pattern.jpg"));
+  background-size: cover;
+  background-position: center;
+  padding: 100px;
+  min-height: 100vh;
+
+  a {
+    color: #F26B5E;
+  }
+}
