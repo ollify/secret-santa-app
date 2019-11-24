@@ -10,6 +10,9 @@ gem 'simple_form'
 gem 'rest-client', '~> 2.0'
 gem 'faker'
 
+# security tool for API keys
+gem 'dotenv-rails', groups: [:development, :test]
+
 # user authentication gem
 gem 'devise'
 
