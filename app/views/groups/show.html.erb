@@ -1,101 +1,56 @@
 <div class="show-group-container">
+  <%= render 'banner_image' %>
 
-  <div class="group-detail">
-    <% if @group.photo.file.nil? %>
-      <% cover_img = "#{asset_path('group-bg.jpg')}" %>
-    <% else %>
-      <% cover_img = "#{cl_image_path @group.photo}" %>
-    <% end %>
+    <div class="container group-background">
+      <div class="row group-row d-flex justify-content-around align-items-start">
 
-    <div class="group-bg" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url( <%= cover_img %> )">
-    </div>
+        <div class="col-lg-7 col-sm-12">
 
-    <div class="container">
-      <%= link_to 'Back to home', root_path, class: 'btn btn-outline-secondary btn-sm', style:"margin-bottom: 30px" %>
-      <div class="row">
-        <div class="col-5">
-          <h1><%= @group.name %></h1>
-          <h2>Hi, <%= current_user.first_name %></h2>
-          <p>Group status: <%= @group.status %></p>
+         <%= render 'greeting' %>
 
-          <div class="group-admin-box">
-            <% if current_user.admin? && @group.status == "created"%>
-            <%= link_to 'Draw now', group_draw_path(@group), method: :post, class: 'btn btn-secondary mb-2' %>
-            <% elsif current_user.admin? && @group.status == "drawn" %>
-            <p>You have already conducted a drawing. You shouldn't draw again.</p>
-            <%= link_to 'Draw again (NOT RECOMMENDED!)', group_draw_path(@group), method: :post, class: 'btn btn-secondary btn-sm' %>
-            <% end %>
+          <div class="description group-box">
+            <input class="form-control form-control-lg" type="text" value="<%= request.original_url %>" id="url-input">
+            <button class="btn btn-secondary" id="copy-button">Copy URL</button>
+            <p>Copy this URL and invite your friends, family or colleagues to <%= @group.name %></p>
           </div>
-        </div>
 
-        <div class="col-5">
-          <input class="form-control form-control-lg" type="text" value="<%= request.original_url %>" id="url-input">
-          <button class="btn btn-secondary" id="copy-button">Copy URL</button>
-          <p>Copy this URL and invite your friends, family or colleagues to <%= @group.name %></p>
-        </div>
-
-        <div class="col-5">
-          <% if current_user.group_id != @group.id && @group.status == "created" %>
-          <p>Currently, you are not part of this group</p>
-          <p>You can request access to the group pushing the button. Once the admin approves it, you are part of it.</p>
-
-          <%= link_to 'Join group', group_join_group_path(@group), method: :post, class: 'btn btn-secondary mb-2' %>
-          <% end %>
-
-
-          <% if current_user.group_id == @group.id && current_user.user_status == "pending" %>
-          <p>You have requested access to the group. Your group admin will give you access soon.</p>
-          <% end %>
-        </div>
-
-        <div class="col-5">
           <% if current_user.group_id == @group.id && current_user.user_status == 'approved' %>
 
-          <% unless current_user.receiver_id.nil? %>
-            <h2>You have to give a gift to <%= User.find(current_user.receiver_id).first_name %> <%= User.find(current_user.receiver_id).last_name %></h2>
-            <div class="card-user">
-              <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-              <div class="card-user-infos">
-                <h2><%= User.find(current_user.receiver_id).first_name %> <%= User.find(current_user.receiver_id).last_name %></h2>
-                <% if User.find(current_user.receiver_id).admin == true %>
-                  <p>ADMIN</p>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="col-lg-5 col-sm-12 description">
-        <h2>Description & group rules</h2>
-        <%= @group.description %>
-        </div>
-
-      <div class="col-lg-5 col-sm-12">
-        <h2>Group members in this group</h2>
-        <% @group.users.each do |user| %>
-          <div class="card-user">
-            <% if user.avatar.file.nil? %>
-              <img src=<%= asset_path("placeholder.jpg") %>>
-            <% else %>
-              <%= cl_image_tag user.avatar %>
-            <% end %>
-            <div class="card-user-infos">
-              <h2><%= user.first_name %> <%= user.last_name %></h2>
-              <p><%= user.user_status %></p>
-              <% unless user.receiver_id.nil? || @group.status == 'created' %>
-              <p>gave gifts to <%= User.find(user.receiver_id).first_name %> <%= User.find(user.receiver_id).last_name %></p>
-              <% end %>
-              <% if user.admin == true %>
-                <p>ADMIN</p>
-              <% end %>
-            </div>
-              <% if user.user_status == 'pending' && current_user.admin == true %>
-              <div class="card-user-action">
-              <%= link_to 'Approve User', approve_request_path(group_id: @group.id, user_id: user.id), method: :post, class: 'btn btn-secondary mb-2' %>
-              </div>
-              <% end %>
+          <div class="description group-box">
+           <h2>Description & group rules</h2>
+           <%= @group.description %>
           </div>
-        <% end %>
-      </div>
-    <% end %>
+
+        </div>
+
+        <div class="col-lg-5 col-sm-12">
+
+          <% unless current_user.receiver_id.nil? %>
+
+          <div class="description group-box">
+            <% receiver = User.find(current_user.receiver_id) %>
+              <h2>You have to give a gift to <%= receiver.first_name %> <%= receiver.last_name %></h2>
+              <div class="card-user">
+                <% if receiver.avatar.file.nil? %>
+                  <img src=<%= asset_path("placeholder.jpg") %>>
+                <% else %>
+                  <%= cl_image_tag receiver.avatar, class: "avatar" %>
+                <% end %>
+                <div class="card-user-infos">
+                  <h2><%= User.find(current_user.receiver_id).first_name %> <%= User.find(current_user.receiver_id).last_name %></h2>
+                  <% if User.find(current_user.receiver_id).admin == true %>
+                    <p>ADMIN</p>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <%= render 'group_members' %>
+
+        </div>
+    </div>
+  </div>
 </div>
+<% end %>
+

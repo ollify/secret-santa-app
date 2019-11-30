@@ -1,7 +1,7 @@
 .card-user {
-  margin-bottom: 30px;
+  margin-top: 30px;
   overflow: hidden;
-  height: 120px;
+  height: 150px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
@@ -36,7 +36,7 @@
 
 .card-user-action {
   position: absolute;
-  right: 30px;
-  top: 20px;
+  top: 50%;
+  right: 20px;
 }
 

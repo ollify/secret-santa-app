@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     post 'draw', to: 'groups#draw'
   end
   post 'approve_request', to: 'groups#approve_request'
+  post 'decline_request', to: 'groups#decline_request'
+  post 'white_label_user', to: 'groups#white_label_user'
   devise_for :users
 end

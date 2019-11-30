@@ -1,0 +1,3 @@
+<% unless user.receiver_id.nil? || @group.status == 'created' %>
+<p>gave gifts to <%= User.find(user.receiver_id).first_name %> <%= User.find(user.receiver_id).last_name %></p>
+<% end %>

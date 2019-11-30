@@ -1,0 +1,10 @@
+Searching 173 files for "your custom message"
+
+/Users/oliver/coding-projects/secret-santa-app/app/controllers/groups_controller.rb:
+    3
+    4    def authenticate_user!
+    5:     redirect_to( new_user_registration_path) unless user_signed_in?
+    6    end
+    7
+
+1 match in 1 file

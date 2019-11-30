@@ -1,4 +1,12 @@
 <div class="signup-container">
+
+  <div class="alert alert-warning alert-dismissible fade show col-lg-4 col-md-6 col-sm-12" role="alert">
+    <strong>Ho, ho, ho.</strong> Just a quick reminder, that you need one e-mail address per group to participate. So in case you plan to create/join multiple groups, use different mail addresses (work, private, etc.).
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
   <div class="form-box">
     <h2>Sign up</h2>
     <p>Register now and create a secret santa group or join an existing one</p>
@@ -20,6 +28,7 @@
                       input_html: { autocomplete: "Last Name" }%>
           <%= f.input :avatar,
                       autofocus: true,
+                      hint: 'Add a picture to your profile.',
                       input_html: { autocomplete: "avatar" }%>
           <%= f.input :password,
                       required: true,

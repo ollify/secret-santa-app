@@ -2,5 +2,13 @@
   margin: 0 auto;
   background: white;
   padding: 50px;
+  width: 450px;
+}
+
+
+@media screen and (max-width: 768px){
+  .form-box {
+  width: 100%;
+  }
 }
 

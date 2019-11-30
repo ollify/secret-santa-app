@@ -25,12 +25,35 @@ class GroupsController < ApplicationController
     end
   end
 
+  def decline_request
+    @group = Group.find(params[:group_id])
+    requesting_user = User.find(params[:user_id])
+    requesting_user.user_status = 'declined'
+    requesting_user.group_id = nil
+    if requesting_user.save
+      redirect_to group_path(@group)
+    else
+      render 'new'
+    end
+  end
+
+  def white_label_user
+    @group = Group.find(params[:group_id])
+    requesting_user = User.find(params[:user_id])
+    requesting_user.user_status = 'created'
+    if requesting_user.save
+      redirect_to group_path(@group)
+    else
+      render 'new'
+    end
+  end
+
   def draw
     @group = Group.find(params[:group_id])
     @participants = @group.users
     @group_arr = []
     @participants.each do |participant|
-      @group_arr << participant
+      @group_arr << participant if participant.user_status == 'approved'
     end
     @group_arr.shuffle!
     @group_arr.each_with_index do |person, index|

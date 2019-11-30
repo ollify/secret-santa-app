@@ -1,0 +1,48 @@
+<div class="group-box">
+  <% pending(@group) %>
+  <% unless @pending == [] %>
+  <h3>Pending requests</h3>
+  <p>You need to approve them before they are part of the group</p>
+  <% @pending.each do |user| %>
+    <div class="card-user">
+      <img src=<%= avatar(user) %> >
+      <div class="card-user-infos">
+        <h2><%= user.first_name %> <%= user.last_name %></h2>
+        <p><%= user.user_status %></p>
+        <% if user.admin == true %>
+          <p>ADMIN</p>
+        <% end %>
+      </div>
+      <% if user.user_status == 'pending' && current_user.admin == true %>
+        <div class="card-user-action">
+          <%= link_to 'Approve User', approve_request_path(group_id: @group.id, user_id: user.id), method: :post, class: 'btn btn-secondary mb-2' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <% end %>
+
+
+  <% approved(@group) %>
+  <div class="approved-box" style="margin-top:30px">
+  <h3>Group members</h3>
+
+  <% @approved.each do |user| %>
+    <div class="card-user">
+      <img src=<%= avatar(user) %> >
+      <div class="card-user-infos">
+        <h2><%= user.first_name %> <%= user.last_name %></h2>
+         <p> <strong>Status: </strong><%= user.user_status %></p>
+         <% if user.receiver_id != nil %>
+           <p>User has a receiver</p>
+         <% else %>
+           <p>User doesn't have a receiver</p>
+         <% end %>
+         <% if user.admin == true %>
+           <p>ADMIN</p>
+         <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+</div>

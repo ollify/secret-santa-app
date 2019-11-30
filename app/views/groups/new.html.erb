@@ -3,12 +3,12 @@
     <div class="image">
       <img src=<%= asset_path('lama2.png') %>>
     </div>
-    <p>Create a group and invite your friends, family & colleagues</p>
+    <p>Create a secret santa group. Once created, you will be able to invite your friends, family & colleagues</p>
     <% if @user.group_id == nil %>
       <%= simple_form_for @group do |f| %>
-        <%= f.input :name %>
-        <%= f.input :description %>
-        <%= f.input :photo %>
+        <%= f.input :name, required: true %>
+        <%= f.input :description, required: true %>
+        <%= f.input :photo, hint: 'This photo will appear as a cover image on your group page.' %>
         <%= f.input :photo_cache, as: :hidden %>
         <%= f.submit class: 'btn btn-secondary mb-2' %>
       <% end %>

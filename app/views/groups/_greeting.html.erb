@@ -1,0 +1,39 @@
+ <div class="group-box">
+
+   <% if current_user.avatar.file.nil? %>
+     <img class="avatar" src=<%= asset_path("placeholder.jpg") %>>
+   <% else %>
+     <%= cl_image_tag current_user.avatar, class: "avatar" %>
+   <% end %>
+
+   <h2>Hi, <%= current_user.first_name %></h2>
+
+   <% if current_user.group_id != @group.id && current_user.user_status != 'declined' && @group.status == "created" %>
+     <p>Currently, you are not part of this group</p>
+     <p>You can request access to the group pushing the button. Once the admin approves it, you are part of it.</p>
+     <%= link_to 'Join group', group_join_group_path(@group), method: :post, class: 'btn btn-secondary mb-2' %>
+   <% end %>
+
+   <% if current_user.group_id == @group.id && current_user.user_status == "pending" %>
+   <p>You have requested access to the group. Your group admin will give you access soon.</p>
+   <% end %>
+
+   <% if current_user.user_status == "declined" %>
+     <p>You have been declined to join a group. You can white label yourself and try to join another group.</p>
+     <%= link_to 'White label me', white_label_user_path(group_id: @group.id, user_id: current_user.id), method: :post %>
+   <% end %>
+
+   <% if current_user.admin? %>
+     <p>You are admin of the group. You have to approve all the people in your group. Only when people are approved, they are part of the game.</p>
+     <p>Once all your group members are in the group, click the "draw" button.</p>
+   <% end %>
+
+   <% if current_user.admin? && @group.status == "created"%>
+     <%= link_to 'Draw now', group_draw_path(@group), method: :post, class: 'btn btn-secondary mb-2' %>
+   <% elsif current_user.admin? && @group.status == "drawn" %>
+    <p>You have already conducted a drawing. You shouldn't draw again.</p>
+    <%= link_to 'Draw again (NOT RECOMMENDED!)', group_draw_path(@group), method: :post %>
+   <% end %>
+</div>
+
+
