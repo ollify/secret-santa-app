@@ -6,7 +6,7 @@
 
         <div class="col-lg-7 col-sm-12">
 
-         <%= render 'greeting' %>
+          <%= render 'greeting' %>
 
           <div class="description group-box">
             <input class="form-control form-control-lg" type="text" value="<%= request.original_url %>" id="url-input">
@@ -27,7 +27,7 @@
 
           <% unless @group.status != 'drawn' %>
 
-          <div class="description group-box">
+          <div class="group-box">
             <% receiver = User.find(current_user.receiver_id) %>
               <h2>You have to give a gift to <%= receiver.first_name %> <%= receiver.last_name %></h2>
               <div class="card-user">
@@ -43,8 +43,8 @@
                   <% end %>
                 </div>
               </div>
+            </div>
             <% end %>
-          </div>
 
           <%= render 'group_members' %>
 
