@@ -41,9 +41,29 @@
   }
 }
 
+.footer {
+  position: fixed;
+  background-color: white;
+  width: auto;
+  border-radius: 10px;
+  padding: 5px 20px;
+  right: 16px;
+  bottom: 0px;
+  z-index: 1000;
+  a {
+    color: #E8AC60;
+  }
+}
+
+
 @media screen and (max-width: 768px){
   video{
     display:none;
+  }
+  .footer {
+    position: relative;
+    right: 0px;
+    width: 100%;
   }
 }
 
@@ -58,19 +78,6 @@
   margin-top: 30px;
 }
 
-.footer {
-  position: fixed;
-  background-color: white;
-  width: auto;
-  display: flex;
-  align-content: center;
-  border-radius: 10px;
-  padding: 5px 20px;
-  right: 16px;
-  bottom: 0px;
-  z-index: 1000;
-  a {
-    color: #E8AC60;
-  }
-}
+
+
 

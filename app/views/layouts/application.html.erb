@@ -23,12 +23,13 @@
 
     <div class="main">
       <%= yield %>
-    </div>
-    <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
-    <%= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
 
     <div class="footer">
       Built with ❤️ by <a href="https://www.linkedin.com/in/allmoslechner/" target="_blank"> &nbsp; Oliver Allmoslechner</a>. With great support from <a href="https://www.linkedin.com/in/sharonmoriel/" target="_blank">&nbsp; Sharon Moriel</a>.
     </div>
+
+    </div>
+    <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
+    <%= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
   </body>
 </html>
