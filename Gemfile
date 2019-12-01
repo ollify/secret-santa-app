@@ -15,6 +15,9 @@ gem 'carrierwave', '~> 1.2'
 # fake mailer
 gem 'letter_opener', group: :development
 
+# postrmark
+gem 'postmark-rails'
+
 # security tool for API keys
 gem 'dotenv-rails', groups: [:development, :test]
 

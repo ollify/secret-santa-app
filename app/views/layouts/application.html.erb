@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta property="og:title" content="Holy Moly | the digital secret santa tool" />
+    <meta property="og:description" content="Play secret santa with your friends, family or colleagues digitally." />
+    <meta property="og:image" content="<%= asset_path('soholymoly.jpg') %>" />
+
+
 
     <title>So holy moly. Your secret santa app.</title>
     <%= csrf_meta_tags %>
@@ -21,5 +26,9 @@
     </div>
     <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
     <%= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
+
+    <div class="footer">
+      Built with ❤️ by <a href="https://www.linkedin.com/in/allmoslechner/" target="_blank"> &nbsp; Oliver Allmoslechner</a>. With great support from <a href="https://www.linkedin.com/in/sharonmoriel/" target="_blank">&nbsp; Sharon Moriel</a>.
+    </div>
   </body>
 </html>
