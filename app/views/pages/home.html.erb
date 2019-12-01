@@ -9,7 +9,7 @@
       <h1>The only secret santa tool you'll ever need.</h1>
     </div>
     <div class="CTA">
-    <%= link_to 'Add a new group', new_group_path, class: 'btn btn-secondary btn-l' %>
+    <%= link_to 'Create a group', new_group_path, class: 'btn btn-secondary btn-l' %>
 
     <% if user_signed_in? == false %>
     <p class="login-cta"><%= link_to 'Or log in to view your group', user_session_path %></p>
@@ -24,6 +24,42 @@
     <% if user_signed_in? %>
       <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: 'btn btn-outline-secondary btn-sm' %>
     <% end %>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#exampleModal" style="margin-top: 30px;">
+      What the fork is secret santa?
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Holy moly. What a tool 🎅</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3>About this tool</h3>
+            Holy moly allows you to create a group, invite your peers with a unique link and conduct a secret drawing.</br>
+            Once the group admin conducts the drawing, every participant sees whom he/she has to give a gift to.</br>
+            At the moment, you can only be part of one group with one e-mail address.</br></br>
+            Currently, the e-mail function does not work yet. So once the group is drawn, all participants have to check back to the group link in order to see whom she/he has to give a gift to.</br></br>
+
+            <h3>About secret santa</h3>
+            Secret santa is a game, usually played during the christmas time amongst friends, family or colleagues.
+            The concept is quite simple. Every participant secretly draws a name of another participant.
+            The secret santa (the giver) then needs to give one or multiple gifts to his/her receiver.
+            Depending on the group, you can define own rules (number of gifts, value per gift, etc.).
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+            <%= link_to 'Create a group', new_group_path, class: 'btn btn-secondary btn-l' %>
+          </div>
+        </div>
+      </div>
     </div>
 
 

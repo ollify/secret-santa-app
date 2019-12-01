@@ -1,12 +1,16 @@
  <div class="group-box">
 
+    <div style="margin: 30px 0px">
+      <strong>Group status: </strong><%= @group.status %>
+    </div>
+
    <% if current_user.avatar.file.nil? %>
      <img class="avatar" src=<%= asset_path("placeholder.jpg") %>>
    <% else %>
      <%= cl_image_tag current_user.avatar, class: "avatar" %>
    <% end %>
 
-   <h2>Hi, <%= current_user.first_name %></h2>
+   <h2 style="margin-top: 30px;">Hi, <%= current_user.first_name %></h2>
 
    <% if current_user.group_id != @group.id && current_user.user_status != 'declined' && @group.status == "created" %>
      <p>Currently, you are not part of this group</p>

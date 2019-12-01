@@ -55,6 +55,7 @@
   background-position: center;
   height: 400px;
   width: 100%;
+  position: relative;
 }
 
 .group-members {
@@ -85,4 +86,18 @@
 
 .group-row {
   margin-top: 50px;
+}
+
+.group-title {
+  color: white;
+  font-size: 36px;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+
+@media screen and (max-width: 768px){
+  .group-box {
+    padding: 25px;
+  }
 }

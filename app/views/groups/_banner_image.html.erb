@@ -6,4 +6,7 @@
 
 <div class="group-bg" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url( <%= cover_img %> )">
   <%= link_to 'Back to home', root_path, class: 'btn btn-outline-secondary btn-sm back-button', style:"margin-bottom: 30px" %>
+  <div class="group-title">
+    <%= @group.name %>
+  </div>
 </div>
