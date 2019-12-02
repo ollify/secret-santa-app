@@ -19,6 +19,8 @@ class GroupsController < ApplicationController
     requesting_user = User.find(params[:user_id])
     requesting_user.user_status = 'approved'
     if requesting_user.save
+      mail = UserMailer.with(user: requesting_user).approval_confirmation
+      mail.deliver_now
       redirect_to group_path(@group)
     else
       render 'new'
@@ -59,6 +61,8 @@ class GroupsController < ApplicationController
     @group_arr.each_with_index do |person, index|
       person.receiver_id = @group_arr[index - 1].id
       person.save
+      mail = UserMailer.with(user: person).draw_confirmation
+      mail.deliver_now
     end
     @group.status = "drawn"
     @group.save

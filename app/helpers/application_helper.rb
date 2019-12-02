@@ -38,4 +38,15 @@ module ApplicationHelper
       true
     end
   end
+
+  def users_admin(user)
+    group = Group.find(user.group_id)
+    group.users.each do |user|
+      if user.admin == true
+        user = @admin
+      end
+    end
+    @admin
+  end
+
 end

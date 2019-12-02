@@ -10,4 +10,22 @@ class UserMailer < ApplicationMailer
 
     mail(to: @user.email, subject: 'Welcome to soholymoly')
   end
+
+  def approval_confirmation
+      @user = params[:user]
+
+      mail(
+        to:       @user.email,
+        subject:  "#{@user.first_name}, your request has been approved!"
+      )
+  end
+
+  def draw_confirmation
+      @user = params[:user]
+
+      mail(
+        to:       @user.email,
+        subject:  "#{@user.first_name}, your secret santa..."
+      )
+  end
 end

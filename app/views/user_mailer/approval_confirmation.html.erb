@@ -1,0 +1,6 @@
+<p>Hi <%= @user.first_name %>,</p>
+
+<p>We're happy to let you know that your request to <%= Group.find(@user.group_id).name %> was approved by the admin.</p>
+<p>You can log in to <a><%= group_url(@user.group_id) %></a></p>
+
+<p>Happy secret santa</p>

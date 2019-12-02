@@ -1,0 +1,9 @@
+<p>Hi <%= @user.first_name %>,</p>
+
+<p>The dice has been rolled in your secret santa group <%= Group.find(@user.group_id).name %>.</p>
+
+<p>You have to give a gift to <%= User.find(@user.receiver_id).first_name %> <%= User.find(@user.receiver_id).last_name %></p>
+
+<p>You can log in to <a><%= group_url(@user.group_id) %></a></p>
+
+<p>Happy secret santa</p>
