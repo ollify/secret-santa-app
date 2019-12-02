@@ -32,4 +32,10 @@ module ApplicationHelper
       user.avatar.url
     end
   end
+
+  def group_admin?(group)
+    if current_user.group_id == group.id && current_user.admin == true
+      true
+    end
+  end
 end

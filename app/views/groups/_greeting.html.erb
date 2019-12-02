@@ -27,16 +27,20 @@
      <%= link_to 'White label me', white_label_user_path(group_id: @group.id, user_id: current_user.id), method: :post %>
    <% end %>
 
-   <% if current_user.admin? %>
+  <% if current_user.group_id == @group.id && @group.status == "created" %>
+    <p>Welcome to <%= @group.name %>. Currently, there are being more people invited to this group. Check back once your group admin conducted the drawing to see your receiver.</p>
+    <% elsif current_user.group_id == @group.id && @group.status == "drawn" %>
+    <p>Your group status changed to "drawn". Scroll down to see to whom you have to give presents to.</p>
+  <% end %>
+
+   <% if current_user.group_id == @group.id && current_user.admin == true && @group.status == "created"%>
      <p>You are admin of the group. You have to approve all the people in your group. Only when people are approved, they are part of the game.</p>
      <p>Once all your group members are in the group, click the "draw" button.</p>
-   <% end %>
-
-   <% if current_user.admin? && @group.status == "created"%>
      <%= link_to 'Draw now', group_draw_path(@group), method: :post, class: 'btn btn-secondary mb-2' %>
-   <% elsif current_user.admin? && @group.status == "drawn" %>
-    <p>You have already conducted a drawing. You shouldn't draw again.</p>
-    <%= link_to 'Draw again (NOT RECOMMENDED!)', group_draw_path(@group), method: :post %>
+
+     <% elsif current_user.group_id == @group.id && current_user.admin == true && @group.status == "drawn" %>
+      <p>You have already conducted a drawing. You shouldn't draw again.</p>
+      <%= link_to 'Draw again (NOT RECOMMENDED!)', group_draw_path(@group), method: :post %>
    <% end %>
 </div>
 

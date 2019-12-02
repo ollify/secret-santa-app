@@ -1,7 +1,12 @@
-<h1>Hello those are the groups</h1>
+<% if current_user.email == 'allmoslechner@gmail.com' %>
 
 <ul>
   <% @groups.each do |group| %>
   <li><%= link_to(group.name, group_path(group)) %></li>
 <% end %>
 </ul>
+
+<% elsif %>
+<p>Only the website admin allmoslechner@gmail.com has access to this page.</p>
+
+<% end %>
