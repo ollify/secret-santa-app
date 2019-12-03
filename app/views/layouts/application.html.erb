@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Cookie banner -->
+    <script>
+      !(function(p,r,i,v,a,c,y){p['MetomicObject']=a;p[a]=p[a]||function(){
+      (p[a].q=p[a].q||[]).push(arguments)},p[a].l=1*new Date();c=r.createElement(i),
+      y=r.getElementsByTagName(i)[0];c.async=1;c.src=v+'?d='+r.location.host;y.parentNode.insertBefore(c,y)
+      })(window, document, 'script', 'https://consent-manager.metomic.io/embed.js', 'Metomic');
+      Metomic('load', { projectId: 'prj:55250f2e-46c0-41e2-b50e-8144f44cb37c' });
+    </script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-81425830-2"></script>
     <script>
@@ -35,7 +44,8 @@
       <%= yield %>
 
     <div class="footer">
-      Built with ❤️ by <a href="https://www.linkedin.com/in/allmoslechner/" target="_blank"> &nbsp; Oliver Allmoslechner</a>. With great support from <a href="https://www.linkedin.com/in/sharonmoriel/" target="_blank">&nbsp; Sharon Moriel</a>.
+      Built with ❤️ by <a href="https://www.linkedin.com/in/allmoslechner/" target="_blank"> &nbsp;Oliver Allmoslechner</a>. With great support from <a href="https://www.linkedin.com/in/sharonmoriel/" target="_blank">&nbsp;Sharon Moriel</a>. <a href="javascript:window.Metomic('ConsentManager:show')">Manage cookies</a> or <a href="<%= legal_path %>">Legal stuff</a>
+
     </div>
 
     </div>

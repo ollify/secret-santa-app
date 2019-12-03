@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post 'decline_request', to: 'groups#decline_request'
   post 'white_label_user', to: 'groups#white_label_user'
   devise_for :users
+  get 'legal', to: 'pages#legal'
 end
