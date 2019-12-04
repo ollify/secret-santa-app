@@ -25,7 +25,9 @@
 
         <div class="col-lg-5 col-sm-12">
 
-          <% unless @group.status != 'drawn' %>
+          <% if @group.status == 'drawn' %>
+
+          <% if current_user.receiver_id != nil %>
 
           <div class="group-box">
             <% receiver = User.find(current_user.receiver_id) %>
@@ -44,6 +46,7 @@
                 </div>
               </div>
             </div>
+            <% end %>
             <% end %>
 
           <%= render 'group_members' %>

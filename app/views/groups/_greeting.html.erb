@@ -39,8 +39,14 @@
      <%= link_to 'Draw now', group_draw_path(@group), method: :post, class: 'btn btn-secondary mb-2' %>
 
      <% elsif current_user.group_id == @group.id && current_user.admin == true && @group.status == "drawn" %>
-      <p>You have already conducted a drawing. You shouldn't draw again.</p>
-      <%= link_to 'Draw again (NOT RECOMMENDED!)', group_draw_path(@group), method: :post %>
+      <p>Let your group members know they should login to the group page to see their receiver</br>
+      <%= link_to '💌 Send members an email with their receiver', group_send_receiver_path(@group), method: :post, data: {confirm: "Do you really want to send an email?"} %>
+      </p>
+
+      <p>You have already conducted a drawing. You shouldn't draw again. If you want to undraw and draw again, click on the link. Make sure to update your group members about it.</br>
+      <%= link_to '🚨 Undo draw', group_undo_draw_path(@group), method: :post, data: {confirm: "Do you really want to undraw?"} %>
+      </p>
+
    <% end %>
 </div>
 

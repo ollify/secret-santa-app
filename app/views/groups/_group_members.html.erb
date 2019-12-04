@@ -15,8 +15,11 @@
       </div>
       <% if user.user_status == 'pending' && current_user.admin == true %>
         <div class="card-user-action">
+          <% unless @group.status == 'drawn' %>
           <%= link_to 'Approve User', approve_request_path(group_id: @group.id, user_id: user.id), method: :post, class: 'btn btn-secondary mb-2' %>
           <%= link_to 'or decline request', decline_request_path(group_id: @group.id, user_id: user.id), method: :post %>
+          <% end %>
+
 
         </div>
       <% end %>

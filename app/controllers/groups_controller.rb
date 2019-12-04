@@ -61,12 +61,36 @@ class GroupsController < ApplicationController
     @group_arr.each_with_index do |person, index|
       person.receiver_id = @group_arr[index - 1].id
       person.save
-      mail = UserMailer.with(user: person).draw_confirmation
-      mail.deliver_now
     end
     @group.status = "drawn"
     @group.save
     redirect_to group_path(@group)
+  end
+
+  def undo_draw
+    @group = Group.find(params[:group_id])
+    @participants = @group.users
+    @participants.each do |user|
+      user.receiver_id = nil
+      user.save
+    end
+    @group.status = 'created'
+    if @group.save
+      redirect_to group_path(@group)
+    else
+      render :new
+    end
+  end
+
+  def send_receiver
+    @group = Group.find(params[:group_id])
+    @participants = @group.users
+    @participants.each do |person|
+      if person.user_status == 'approved' && @group.status == 'drawn'
+        mail = UserMailer.with(user: person).draw_confirmation
+        mail.deliver_now
+      end
+    end
   end
 
   def index
