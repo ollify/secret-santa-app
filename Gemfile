@@ -10,7 +10,7 @@ gem 'simple_form'
 gem 'rest-client', '~> 2.0'
 gem 'faker'
 gem 'cloudinary', '~> 1.9.1'
-gem 'carrierwave', '~> 1.2'
+gem 'carrierwave', '~> 1.3'
 
 # fake mailer
 gem 'letter_opener', group: :development
